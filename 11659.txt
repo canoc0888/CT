@@ -1,0 +1,29 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n=sc.nextInt();
+        int t=sc.nextInt();
+        ArrayList<Integer> snumber=new ArrayList<Integer>();
+        int e;
+        int sum1=0;
+        snumber.add(0);
+        for(int i=0;i<n;i++){
+            e=sc.nextInt();
+            sum1=sum1+e;
+            snumber.add(sum1);
+        }
+        int f;
+        int s;
+        int sum2=0;
+        for(int j=0;j<t;j++){
+            f=sc.nextInt();
+            s=sc.nextInt();
+            sum2=snumber.get(s)-snumber.get(f-1);
+            System.out.println(sum2);
+
+        }
+    }
+}
