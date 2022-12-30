@@ -1,0 +1,30 @@
+import java.util.Stack;
+
+import javax.lang.model.element.Element;
+
+class Solution {
+    public int solution(int[][] board, int[] moves) {
+        int answer = 0;
+        Stack<Integer> basket = new Stack<>();
+        for(int i=0;i<moves.length;i++){
+            int move=moves[i]-1;
+            for(int j=0;j<board.length;j++){
+                if (board[j][move]!=0){
+                    int doll=board[j][move];
+                    board[j][move]=0;
+                    basket.push(doll);
+                    int n=basket.size();
+                    if(n>=2){
+                        if(basket.elementAt(n-1)==basket.elementAt(n-2)){
+                            basket.pop();
+                            basket.pop();
+                            answer+=2;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        return answer;
+    }
+}
