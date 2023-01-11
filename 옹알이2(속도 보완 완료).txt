@@ -1,0 +1,61 @@
+class Solution {
+    public int solution(String[] babbling) {
+        int answer = 0;
+        int i= 0;
+        while(i<babbling.length){
+            if(babbling[i].length()<2){
+                i++;
+                continue;
+            }
+            String word=babbling[i];
+            int n=0;
+            while(word.length()>2){
+                if(word.substring(0,3).equals("aya")&&n!=1){
+                    word=word.substring(3);
+                    n=1;
+                    
+                    continue;
+                }else if(word.substring(0,3).equals("woo")&&n!=2){
+                    word=word.substring(3);
+                    n=2;
+                    
+                    continue;
+                }else if(word.substring(0,2).equals("ye")&&n!=3){
+                    word=word.substring(2);
+                    n=3;
+                   
+                    continue;
+                }else if(word.substring(0,2).equals("ma")&&n!=4){
+                    word=word.substring(2);
+                    n=4;
+                    
+                    continue;
+                }else{
+                    
+                    break;
+                }      
+            }
+            if(word.length()>2||word.length()==1){
+                i++;
+                continue;
+                
+            }else if(word.equals("ye")&&n!=3){
+                answer++;
+                i++;
+                continue;
+            }else if(word.equals("ma")&&n!=4){
+                answer++;
+                i++;
+                continue;
+            }else if(word.length()==0){
+                answer++;
+                i++;
+                continue;
+            }else{
+                i++;
+                continue;
+            }   
+        }
+        return answer;
+    }
+}
