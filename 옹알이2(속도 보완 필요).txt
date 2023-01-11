@@ -1,0 +1,72 @@
+class Solution {
+    public int solution(String[] babbling) {
+        int answer = 0;
+        int i= 0;
+        while(i<babbling.length){
+            if(babbling[i].length()<2){
+                i++;
+                continue;
+            }
+            String word=babbling[i];
+            boolean a1=false;
+            boolean a2=false;
+            boolean a3=false;
+            boolean a4=false;
+            while(word.length()>2){
+                if(word.substring(0,3).equals("aya")&&a1==false){
+                    word=word.substring(3);
+                    a1=true;
+                    a2=false;
+                    a3=false;
+                    a4=false;
+                    continue;
+                }else if(word.substring(0,3).equals("woo")&&a2==false){
+                    word=word.substring(3);
+                    a1=false;
+                    a2=true;
+                    a3=false;
+                    a4=false;
+                    continue;
+                }else if(word.substring(0,2).equals("ye")&&a3==false){
+                    word=word.substring(2);
+                    a1=false;
+                    a2=false;
+                    a3=true;
+                    a4=false;
+                    continue;
+                }else if(word.substring(0,2).equals("ma")&&a4==false){
+                    word=word.substring(2);
+                    a1=false;
+                    a2=false;
+                    a3=false;
+                    a4=true;
+                    continue;
+                }else{
+                    a1=false;
+                    a2=false;
+                    a3=false;
+                    a4=false;
+                    break;
+                }      
+            }
+            if(word.length()>2||word.length()==1){
+                i++;
+                continue;
+                
+            }else if(word.equals("ye")&&a3==false){
+                answer++;
+                i++;
+                continue;
+            }else if(word.equals("ma")&&a4==false){
+                answer++;
+                i++;
+                continue;
+            }else if(word.length()==0){
+                answer++;
+                i++;
+                continue;
+            }   
+        }
+        return answer;
+    }
+}
