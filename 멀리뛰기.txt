@@ -1,0 +1,18 @@
+class Solution {
+    public long solution(int n) {
+        long answer = 0;
+        if(n==1){
+            return 1;
+        }else if(n==2){
+            return 2;
+        }
+        long x=1;
+        long y=2;
+        for(int i=1;i<n-1;i++){
+            answer=x%1234567+y%1234567;
+            x=y;
+            y=answer;
+        }
+        return answer%1234567;
+    }
+}
