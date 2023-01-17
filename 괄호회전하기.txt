@@ -1,0 +1,51 @@
+import java.util.Stack;
+
+class Solution {
+    public int solution(String s) {
+        int answer = 0;
+        int sl=s.length();
+        Stack<String> st=new Stack<>();
+        Stack<String> st2=new Stack<>();
+        String v1="";
+        String v2="";
+        int flag;
+        for(int j=0;j<sl;j++){
+        for(int i=0;i<sl;i++){
+            st.push(s.substring(i,i+1));
+        }
+        s=s.substring(1)+s.substring(0,1);
+        flag=0;
+        for(int i=0;i<sl;i++){
+            v1=st.pop();
+            if(v1.equals(")")||v1.equals("]")||v1.equals("}")){
+                st2.push(v1);
+                flag++;
+                continue;
+            }else if(!st2.empty()){
+                v2=st2.pop();
+                if(v1.equals("(")&&v2.equals(")")){
+                    flag++;
+                    continue;
+                }else if(v1.equals("{")&&v2.equals("}")){
+                    flag++;
+                    continue;
+                }else if(v1.equals("[")&&v2.equals("]")){
+                    flag++;
+                    continue;
+                }else{
+                    
+                    break;
+                }
+            }else{
+                break;
+            }
+        }
+        if(flag==sl&&st2.empty()){
+            answer++;
+        }else{
+            continue;
+        }
+        }
+        return answer;
+    }
+}
