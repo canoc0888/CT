@@ -1,0 +1,25 @@
+import java.util.HashMap;
+import java.util.Set;
+
+class Solution {
+    public int solution(String[][] clothes) {
+        int answer = 0;
+        int number=0;
+        HashMap<String,Integer> map = new HashMap<String,Integer>();
+        for(int i=0;i<clothes.length;i++){
+            if(map.get(clothes[i][1])==null){
+                map.put(clothes[i][1],1);
+            }else{
+                number=map.get(clothes[i][1]);
+                map.put(clothes[i][1],++number);
+            }
+        }
+        //Set<Integer> values = map.values();
+        int vcount=1;
+        for(Integer value:map.values()){
+            vcount=vcount*(value+1);
+        }
+        answer=vcount-1;
+        return answer;
+    }
+}
