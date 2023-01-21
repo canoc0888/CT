@@ -1,0 +1,23 @@
+import java.util.Arrays;
+
+class Solution {
+    public int[] solution(int n, long left, long right) {
+        int[] answer = {};
+        
+        answer=new int[(int)(right-left)+1];
+        int a;
+        int b;
+        int index=0;
+        while(left<=right){
+            if(left/n >=left%n ){
+               answer[index]=(int)(left/n)+1; 
+            }else{
+                answer[index]=(int)(left%n)+1;
+            }
+            index++;
+            left++;
+        }
+        
+        return answer;
+    }
+}
