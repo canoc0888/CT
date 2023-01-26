@@ -1,0 +1,19 @@
+import java.util.*;
+
+class Solution {
+    public static int ft(int[] numbers,int target,int sum,int count,int index){
+       if(index==numbers.length-1){
+            count=(sum+numbers[index]==target)? ++count:count;
+            return (sum-numbers[index]==target)? ++count:count;
+           
+       }else{
+           count=ft(numbers,target,sum+numbers[index],count,index+1);
+           return ft(numbers,target,sum-numbers[index],count,index+1);
+       }
+    }
+    public int solution(int[] numbers, int target) {
+        int answer = 0;
+        answer=ft(numbers,target,0,0,0);
+        return answer;
+    }
+}
