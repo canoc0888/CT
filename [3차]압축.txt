@@ -1,0 +1,40 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(String msg) {
+        int[] answer = {};
+        HashMap<String,Integer> hm=new HashMap<String,Integer>();
+        char c;
+        ArrayList<Integer> al=new ArrayList<Integer>();
+        for(int i=1;i<=26;i++){
+            c=(char)(64+i);
+            hm.put(String.valueOf(c),i);
+        }
+        int lv=26;
+        int x=0;
+        int y=x+1;
+        int len=msg.length();
+        //String s="";
+        while(y<=len){
+            if(hm.containsKey(msg.substring(x,y))){
+                y++;
+                continue;
+            }else{
+                al.add(hm.get(msg.substring(x,y-1)));
+                hm.put(msg.substring(x,y),++lv);
+                x=y-1;
+                
+            }
+        }
+        if(hm.containsKey(msg.substring(x))){
+            al.add(hm.get(msg.substring(x)));
+        }
+        
+        answer=new int[al.size()];
+        int index=0;
+        for(int i:al){
+            answer[index++]=i;
+        }
+        return answer;
+    }
+}
