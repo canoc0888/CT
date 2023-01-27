@@ -1,0 +1,59 @@
+import java.util.*;
+
+class Solution {
+    public static int ft(Double[] numbers, int index, int answer){
+        while(index<numbers.length){
+            if(numbers[index]<=1){
+                index++;
+                continue;
+            }
+            Double n=2.0;
+            Double x=Math.sqrt(numbers[index]);
+            while(n<=x&&numbers[index]%n!=0){
+                n+=1.0;    
+            }
+            if(n<=x&&numbers[index]%n==0){
+                index++;
+                continue;
+            }else if(n>x){
+                answer++;
+                index++;
+                continue;
+            }
+        }return answer;
+    }
+    public int solution(int n, int k) {
+        int answer = -1;
+        StringBuffer sb=new StringBuffer();
+        int x;
+        if(k!=10){
+            while(n>=k){
+                x=n/k;
+                sb.insert(0,n%k);
+                n=x;
+            }
+            sb.insert(0,n);
+        }else{
+            sb.insert(0,n);
+        }
+        String str= sb.toString();
+        String[] arr=str.split("0");
+        int c=0;
+        for(String s:arr){
+            if(s==null||s.equals("")||s.contains("0")){
+                continue;
+            }else{
+                c++;
+            }
+        }
+        Double[] numbers=new Double[c];
+        int i=0;
+        for(String s:arr){
+            if(s.equals("")||s.contains("0")||s==null)
+                continue;
+            numbers[i++]=Double.parseDouble(s);
+        }
+        answer=ft(numbers,0,0);
+        return answer;
+    }
+}
